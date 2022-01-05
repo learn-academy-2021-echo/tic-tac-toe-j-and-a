@@ -1,5 +1,12 @@
-.square{
+.square {
   height: 100px;
   width: 100px;
   border: 2px solid black;
+}
+
+.gameBoard {
+  height: 312px;
+  width: 312px;
+  display: flex;
+  flex-wrap: wrap;
 }
