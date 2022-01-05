@@ -3,7 +3,6 @@ import Square from "./components/Square";
 import "./App.css";
 import Restart from "./components/Restart";
 
-
 // map to display all the boxes
 // flex the boxes/grid
 // add emojis for player 1 and player 2
@@ -28,17 +27,26 @@ class App extends Component {
       counter: 0,
       winner1: false,
       winner2: false,
-      endGame:
     };
   }
 
   handleEmoji = (index) => {
     let { squares, counter, winner1, winner2 } = this.state;
-    if (counter % 2 === 0 && squares[index] === "" && winner1 === false && winner2 === false) {
+    if (
+      counter % 2 === 0 &&
+      squares[index] === "" &&
+      winner1 === false &&
+      winner2 === false
+    ) {
       squares[index] = "〇";
       counter++;
       this.setState({ squares: squares, counter: counter });
-    } else if (counter % 2 !== 0 && squares[index] === "" && winner1 === false && winner2 === false) {
+    } else if (
+      counter % 2 !== 0 &&
+      squares[index] === "" &&
+      winner1 === false &&
+      winner2 === false
+    ) {
       squares[index] = "❌";
       counter++;
       this.setState({ squares: squares, counter: counter });
@@ -71,14 +79,14 @@ class App extends Component {
     }
   };
 
-
   restartButton = () => {
     this.setState({
       squares: ["", "", "", "", "", "", "", "", ""],
       counter: 0,
       winner1: false,
-      winner2: false,})
-  }
+      winner2: false,
+    });
+  };
   render() {
     return (
       <>
