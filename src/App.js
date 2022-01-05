@@ -30,6 +30,18 @@ class App extends Component {
     };
   }
 
+  testMethod = () => {
+    this.firstMethod()
+    this.secondMethod()
+  }
+
+  firstMethod = () => {
+    alert("click")
+  }
+  secondMethod = () => {
+    alert("also click")
+  }
+
   handleEmoji = (index) => {
     let { squares, counter, winner1, winner2 } = this.state;
     if (
@@ -99,6 +111,9 @@ class App extends Component {
                 key={index}
                 index={index}
                 handleEmoji={this.handleEmoji}
+                testMethod={this.testMethod}
+                firstMethod={this.firstMethod}
+                secondMethod={this.secondMethod}
               />
             );
           })}

@@ -6,11 +6,14 @@ handleTurn = () => {
   this.props.handleEmoji(this.props.index)
 }
 
+handlesEmoji = () => {
+  this.props.testMethod()
+}
   render(){
     return(
       <>
         <div
-        onClick={() => {this.handleTurn()}}
+        onClick={() => {this.handlesEmoji()}}
         className="square"
         >
         {this.props.value}
