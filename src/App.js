@@ -15,29 +15,59 @@ import "./App.css";
 // search input field that accepts emoji or create radio button
 // ❌ , 〇
 
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: ["","","","","","","","",""],
-      counter: 0
+      squares: ["", "", "", "", "", "", "", "", ""],
+      counter: 0,
+      winner1: false,
+      winner2: false,
     };
   }
 
   handleEmoji = (index) => {
-    let { squares, counter } = this.state
-    if (counter % 2 === 0) {
-      squares[index] = "〇"
-      counter++
-      this.setState({ squares: squares, counter: counter})
-    } else if (counter % 2 !== 0) {
-      squares[index] = "❌"
-      counter++
-      this.setState({squares: squares, counter: counter})
-    }
+    let { squares, counter, winner1, winner2 } = this.state;
+    if (counter % 2 === 0 && squares[index] === "") {
+      squares[index] = "〇";
+      counter++;
+      this.setState({ squares: squares, counter: counter });
+    } else if (counter % 2 !== 0 && squares[index] === "") {
+      squares[index] = "❌";
+      counter++;
+      this.setState({ squares: squares, counter: counter });
     }
 
+    if (
+      (squares[0] === "〇" && squares[1] === "〇" && squares[2] === "〇") ||
+      (squares[3] === "〇" && squares[4] === "〇" && squares[5] === "〇") ||
+      (squares[6] === "〇" && squares[7] === "〇" && squares[8] === "〇") ||
+      (squares[0] === "〇" && squares[3] === "〇" && squares[6] === "〇") ||
+      (squares[1] === "〇" && squares[4] === "〇" && squares[7] === "〇") ||
+      (squares[2] === "〇" && squares[5] === "〇" && squares[8] === "〇") ||
+      (squares[0] === "〇" && squares[4] === "〇" && squares[8] === "〇") ||
+      (squares[2] === "〇" && squares[4] === "〇" && squares[6] === "〇")
+    ) {
+      this.setState({ winner1: true });
+    } else if (
+      (squares[0] === "❌" && squares[1] === "❌" && squares[2] === "❌") ||
+      (squares[3] === "❌" && squares[4] === "❌" && squares[5] === "❌") ||
+      (squares[6] === "❌" && squares[7] === "❌" && squares[8] === "❌") ||
+      (squares[0] === "❌" && squares[3] === "❌" && squares[6] === "❌") ||
+      (squares[1] === "❌" && squares[4] === "❌" && squares[7] === "❌") ||
+      (squares[2] === "❌" && squares[5] === "❌" && squares[8] === "❌") ||
+      (squares[0] === "❌" && squares[4] === "❌" && squares[8] === "❌") ||
+      (squares[2] === "❌" && squares[4] === "❌" && squares[6] === "❌")
+    ) {
+      this.setState({ winner2: true });
+    }
+
+    if (winner1 === true) {
+      console.log("winner1");
+    } else if (winner2 === true) {
+      console.log("winner2");
+    }
+  };
 
   render() {
     return (
@@ -45,12 +75,14 @@ class App extends Component {
         <h1>Tic Tac Toe</h1>
         <div className="gameBoard">
           {this.state.squares.map((value, index) => {
-            return <Square
+            return (
+              <Square
                 value={value}
                 key={index}
                 index={index}
                 handleEmoji={this.handleEmoji}
-            />;
+              />
+            );
           })}
         </div>
       </>
