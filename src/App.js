@@ -13,22 +13,44 @@ import "./App.css";
 // restart button that clears the gameboard
 // notification of player 1 and player 2 who's turn -- onClick displays Player 1 when even and player 2 when odd
 // search input field that accepts emoji or create radio button
+// ❌ , 〇
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      squares: ["","","","","","","","",""],
+      counter: 0
     };
   }
+
+  handleEmoji = (index) => {
+    let { squares, counter } = this.state
+    if (counter % 2 === 0) {
+      squares[index] = "〇"
+      counter++
+      this.setState({ squares: squares, counter: counter})
+    } else if (counter % 2 !== 0) {
+      squares[index] = "❌"
+      counter++
+      this.setState({squares: squares, counter: counter})
+    }
+    }
+
 
   render() {
     return (
       <>
         <h1>Tic Tac Toe</h1>
         <div className="gameBoard">
-          {this.state.squares.map((value) => {
-            return <Square />;
+          {this.state.squares.map((value, index) => {
+            return <Square
+                value={value}
+                key={index}
+                index={index}
+                handleEmoji={this.handleEmoji}
+            />;
           })}
         </div>
       </>
