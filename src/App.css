@@ -8,9 +8,24 @@
   justify-content: center;
 }
 
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
 .gameBoard {
   height: 312px;
   width: 312px;
   display: flex;
   flex-wrap: wrap;
+}
+
+.bigDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.restart {
+  display: flex;
+  justify-content: center;
 }

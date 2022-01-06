@@ -27,19 +27,8 @@ class App extends Component {
       counter: 0,
       winner1: false,
       winner2: false,
+      gameEnd: 0,
     };
-  }
-
-  testMethod = () => {
-    this.firstMethod()
-    this.secondMethod()
-  }
-
-  firstMethod = () => {
-    alert("click")
-  }
-  secondMethod = () => {
-    alert("also click")
   }
 
   handleEmoji = (index) => {
@@ -75,7 +64,6 @@ class App extends Component {
       (squares[2] === "〇" && squares[4] === "〇" && squares[6] === "〇")
     ) {
       this.setState({ winner1: true });
-      console.log("winner1");
     } else if (
       (squares[0] === "❌" && squares[1] === "❌" && squares[2] === "❌") ||
       (squares[3] === "❌" && squares[4] === "❌" && squares[5] === "❌") ||
@@ -87,7 +75,18 @@ class App extends Component {
       (squares[2] === "❌" && squares[4] === "❌" && squares[6] === "❌")
     ) {
       this.setState({ winner2: true });
-      console.log("winner2");
+    }
+    this.winnerMethod();
+  };
+
+  winnerMethod = () => {
+    let { winner1, winner2, gameEnd } = this.state;
+    if (winner1 === true && gameEnd === 0) {
+      alert("〇 is the winner!!");
+      this.setState({ gameEnd: 1 });
+    } else if (winner2 === true && gameEnd === 0) {
+      alert("❌ is the winner!!");
+      this.setState({ gameEnd: 1 });
     }
   };
 
@@ -103,22 +102,24 @@ class App extends Component {
     return (
       <>
         <h1>Tic Tac Toe</h1>
-        <div className="gameBoard">
-          {this.state.squares.map((value, index) => {
-            return (
-              <Square
-                value={value}
-                key={index}
-                index={index}
-                handleEmoji={this.handleEmoji}
-                testMethod={this.testMethod}
-                firstMethod={this.firstMethod}
-                secondMethod={this.secondMethod}
-              />
-            );
-          })}
+        <div className="bigDiv">
+          <div className="gameBoard">
+            {this.state.squares.map((value, index) => {
+              return (
+                <Square
+                  value={value}
+                  key={index}
+                  index={index}
+                  handleEmoji={this.handleEmoji}
+                  winnerMethod={this.winnerMethod}
+                />
+              );
+            })}
+          </div>
         </div>
-        <Restart restartButton={this.restartButton} />
+        <div className="restart">
+          <Restart restartButton={this.restartButton} />
+        </div>
       </>
     );
   }

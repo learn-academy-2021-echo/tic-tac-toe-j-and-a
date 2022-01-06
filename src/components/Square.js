@@ -1,25 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-class Square extends Component{
+class Square extends Component {
+  handleTurn = () => {
+    this.props.handleEmoji(this.props.index);
+  };
 
-handleTurn = () => {
-  this.props.handleEmoji(this.props.index)
-}
-
-handlesEmoji = () => {
-  this.props.testMethod()
-}
-  render(){
-    return(
+  render() {
+    return (
       <>
         <div
-        onClick={() => {this.handlesEmoji()}}
-        className="square"
+          onClick={() => {
+            this.handleTurn();
+          }}
+          className="square"
         >
-        {this.props.value}
+          {this.props.value}
         </div>
       </>
-    )
+    );
   }
 }
-export default Square
+export default Square;
