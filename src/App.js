@@ -14,7 +14,7 @@ import Restart from "./components/Restart";
 // restart button that clears the gameboard
 // notification of player 1 and player 2 who's turn -- onClick displays Player 1 when even and player 2 when odd
 // search input field that accepts emoji or create radio button
-// ❌ , 〇
+// ❌ , ⭕️
 
 // conditional that evaluates if win condition has already been met. if true, do not activate onClick
 // create a method that runs two methods -- one being the win condition, and one that sends alert
@@ -39,7 +39,7 @@ class App extends Component {
       winner1 === false &&
       winner2 === false
     ) {
-      squares[index] = "〇";
+      squares[index] = "⭕️";
       counter++;
       this.setState({ squares: squares, counter: counter });
     } else if (
@@ -54,14 +54,14 @@ class App extends Component {
     }
 
     if (
-      (squares[0] === "〇" && squares[1] === "〇" && squares[2] === "〇") ||
-      (squares[3] === "〇" && squares[4] === "〇" && squares[5] === "〇") ||
-      (squares[6] === "〇" && squares[7] === "〇" && squares[8] === "〇") ||
-      (squares[0] === "〇" && squares[3] === "〇" && squares[6] === "〇") ||
-      (squares[1] === "〇" && squares[4] === "〇" && squares[7] === "〇") ||
-      (squares[2] === "〇" && squares[5] === "〇" && squares[8] === "〇") ||
-      (squares[0] === "〇" && squares[4] === "〇" && squares[8] === "〇") ||
-      (squares[2] === "〇" && squares[4] === "〇" && squares[6] === "〇")
+      (squares[0] === "⭕️" && squares[1] === "⭕️" && squares[2] === "⭕️") ||
+      (squares[3] === "⭕️" && squares[4] === "⭕️" && squares[5] === "⭕️") ||
+      (squares[6] === "⭕️" && squares[7] === "⭕️" && squares[8] === "⭕️") ||
+      (squares[0] === "⭕️" && squares[3] === "⭕️" && squares[6] === "⭕️") ||
+      (squares[1] === "⭕️" && squares[4] === "⭕️" && squares[7] === "⭕️") ||
+      (squares[2] === "⭕️" && squares[5] === "⭕️" && squares[8] === "⭕️") ||
+      (squares[0] === "⭕️" && squares[4] === "⭕️" && squares[8] === "⭕️") ||
+      (squares[2] === "⭕️" && squares[4] === "⭕️" && squares[6] === "⭕️")
     ) {
       this.setState({ winner1: true });
     } else if (
@@ -82,7 +82,7 @@ class App extends Component {
   winnerMethod = () => {
     let { winner1, winner2, gameEnd } = this.state;
     if (winner1 === true && gameEnd === 0) {
-      alert("〇 is the winner!!");
+      alert("⭕️ is the winner!!");
       this.setState({ gameEnd: 1 });
     } else if (winner2 === true && gameEnd === 0) {
       alert("❌ is the winner!!");
@@ -96,6 +96,7 @@ class App extends Component {
       counter: 0,
       winner1: false,
       winner2: false,
+      gameEnd: 0,
     });
   };
   render() {
@@ -119,6 +120,7 @@ class App extends Component {
         </div>
         <div className="restart">
           <Restart restartButton={this.restartButton} />
+
         </div>
       </>
     );

@@ -11,6 +11,7 @@
 h1 {
   display: flex;
   justify-content: center;
+  color: green;
 }
 
 .gameBoard {
@@ -28,4 +29,5 @@ h1 {
 .restart {
   display: flex;
   justify-content: center;
+  fill: red;
 }
